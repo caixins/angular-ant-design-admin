@@ -1,0 +1,17 @@
+.layout-wrapper{
+    .ant-layout{
+        min-height: 100vh;
+        overflow: hidden;
+        .logo{
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            margin: 16px;
+            line-height: 32px;
+            text-align: center;
+        }
+        .big-logo{
+            font-size: 28px;
+        }
+    }
+}
