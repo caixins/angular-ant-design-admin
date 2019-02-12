@@ -6,6 +6,7 @@ import { LoginModule } from "./login/login.module";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { routes } from "./router";
 import { LayoutModule } from './layout/layout.module';
+import { CanActivateTeam } from '../service/auth.service';
 
 @NgModule({
     imports: [
@@ -16,6 +17,9 @@ import { LayoutModule } from './layout/layout.module';
     ],
     declarations: [
         DashboardComponent
+    ],
+    providers:[
+        CanActivateTeam
     ],
     exports: [RouterModule]
 })

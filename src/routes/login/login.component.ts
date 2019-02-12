@@ -1,11 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginSerive } from '../../service/login.service';
+import { CommonService } from '../../service/common.service';
 
 @Component({
     selector: "app-pages-login",
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    styleUrls: ['./login.component.scss'],
+    providers:[LoginSerive,CommonService]
 })
 
 export class LoginComponent implements OnInit {
@@ -14,7 +17,9 @@ export class LoginComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private router:Router
+        private router:Router,
+        private service:LoginSerive,
+        private common:CommonService
     ) { 
         this.validateForm = this.fb.group({
             userName: [null, [Validators.required]],
@@ -32,6 +37,14 @@ export class LoginComponent implements OnInit {
             this.validateForm.controls[i].markAsDirty();
             this.validateForm.controls[i].updateValueAndValidity();
         }
-        this.router.navigate(['/dashboard']);
+        this.service.doLogin(this.validateForm.value).then((res:any)=>{
+            if(res.success){
+                sessionStorage.setItem('_authToken',res.token);
+                this.router.navigate(['/dashboard']);
+            }else{
+                this.common.showNotification(null,res.msg,'error')
+            }
+        })
+        
     }
 }

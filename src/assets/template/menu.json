@@ -1,0 +1,15 @@
+{
+    "success":true,
+    "data":[{
+        "text":"table",
+        "link":"/table",
+        "icon":"table",
+        "children":[{
+            "text":"basic",
+            "link":"/table/basic"
+        },{
+            "text":"Complex table",
+            "link":"/table/complex"
+        }]
+    }]
+}
